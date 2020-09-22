@@ -26,8 +26,8 @@ class CustomPage {
     async login(){
         const user =  await userFactory();
         const { session, sig } = await sessionFactory(user);
-        await this.page.setCookie({ 'url': 'http://localhost:3000', name: 'session', value: session });
-        await this.page.setCookie({ 'url': 'http://localhost:3000', name: 'session.sig', value: sig });
+        await this.page.setCookie({ 'domain': 'localhost', name: 'session', value: session });
+        await this.page.setCookie({ 'domain': 'localhost', name: 'session.sig', value: sig });
         await this.page.goto('http://localhost:3000/blogs');
         await this.page.waitFor('a[href="/auth/logout"]');    
     }
